@@ -51,7 +51,7 @@ SO THAT my website can handle large amounts of unstructured data
 
 ## Screenshot
   
-  ![screenshot image](./public/img/website-screenshot.JPG?raw=true "Screenshot") 
+  ![screenshot image](./public/img/screenshot.JPG?raw=true "Screenshot") 
    
 ## Questions
   Feel free to reach out me on GitHub:  
