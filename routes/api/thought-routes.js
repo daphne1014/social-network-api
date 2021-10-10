@@ -11,20 +11,20 @@ const {
 
 // /api/thoughts
 router
-.route('/thoughts')
+.route('/')
 .get(getAllThought)
 .post(addThought);
 
 // /api/thoughts/:id
 router
-.route('thoughts/:id')
+.route('/:id')
 .get(getThoughtById)
 .put(updateThought)
 .delete(removeThought);
 
 // /api/thoughts/:thoughtid/:reacionId
 router
-.route('/thoughts/:thoughtId/:reacionId')
+.route('/:thoughtId/:reacionId')
 .post(addReaction)
 .delete(removeReaction);
 

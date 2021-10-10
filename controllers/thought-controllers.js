@@ -4,6 +4,7 @@ const thoughtController = {
     //get all thoughts
     getAllThought(req, res) {
         Thought.find({})
+            .select('-__v')
             .then(dbThoughtData => res.json(dbThoughtData))
             .catch(err => {
                 console.log(err);
@@ -14,6 +15,7 @@ const thoughtController = {
     //get one thought by id
     getThoughtById({ params }, res) {
         Thought.findOne({ _id: params.id })
+            .select('-__v')
             .then(dbThoughtData => res.json(dbThoughtData))
             .catch(err => {
                 console.log(err);
@@ -82,31 +84,31 @@ const thoughtController = {
             .catch(err => res.json(err));
     },
 
-    addReaction({ params, body }, res ) {
+    addReaction({ params, body }, res) {
         Thought.findByIdAndUpdate(
             { _id: params.thoughtId },
-            { $push: {reactions: body }},
-            { new: true, runValidators: true}
+            { $push: { reactions: body } },
+            { new: true, runValidators: true }
         )
-        .then(dbUserData => {
-            if(!dbUserData){
-                res.status(404).json({message: 'No user found with this id'});
-                return;
-            }
-            res.json(dbUserData);
-        })
-        .catch(err => res.json(err));
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({ message: 'No user found with this id' });
+                    return;
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.json(err));
     },
 
     // remove reaction
     removeReaction({ params }, res) {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
-            { $pull: {reactions: {reactionId: params.reactionId}}},
-            { new: true}
+            { $pull: { reactions: { reactionId: params.reactionId } } },
+            { new: true }
         )
-        .then(dbUserData => res.json(dbUserData))
-        .catch(err => res.json(err));
+            .then(dbUserData => res.json(dbUserData))
+            .catch(err => res.json(err));
     }
 }
 
